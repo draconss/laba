@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/main/">Home</a>
+                    <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">catalog</a>
@@ -32,8 +32,8 @@
                     <a class="nav-link" href="#">Tags</a>
                 </li>
             </ul>
-            <form action="/main/such/" class="form-inline my-2 my-lg-0">
-                <input name="such" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
@@ -46,58 +46,59 @@
 
 <main>
  <div class="wrapper">
-    <div class="content">
-
-
-        {% for i in manga %}
-            <div class="block">
-                <div class = "title">
-                <img class="imgs" src="{{ i.title.url }}" alt="#">
-                </div>
-                <div class = "minic">
-                    <div class="name">
-                        <a href="/main/read/?{{ i.id }}={{ i.name }}">
-                        <h3>{{ i.name }}</h3>
-                            </a>
-                    </div>
-                    <div class="data">
-                        Дата: {{ i.data_reliz }}
-                    </div>
-                    <div class="auth">
-                        Автор: {{ i.author }}
-                    </div>
-                    <div class="tag">
-                        <form action="/main/tags/">
-                     теги:
-                        {% for j in i.tag.all %}
-                            <input style="margin: 1px" class="btn btn-outline-dark btn-sm" type="submit" name="{{ j.id }}" value="{{ j.name }}">
-
-                        {% endfor %}
-                        </form>
-                    </div>
-                </div>
+    <div class="block">
+        <div class="sssd">
+            <img class="imgs" src="{{ manga.title.url }}" alt="">
+        </div>
+        <div class="minic">
+            <div>
+                Имя: {{ manga.name }}
             </div>
-         {% endfor %}
+            <div>
+                Дата: {{ manga.data_reliz }}
+            </div>
+            <div>
+                Автор: {{ manga.author }}
+            </div>
+            <div>
+            <form action="/main/tags/">
+                Теги:
+                {% for j in manga.tag.all %}
+                    <input style="margin: 1px" class="btn btn-outline-dark btn-sm" type="submit" name="{{ j.id }}" value="{{ j.name }}">
+                {% endfor %}
+            </form>
+            </div>
+            <div>
 
+            </div>
+        </div>
 
     </div>
 
-    <div class="test" >
-        <form action="/main/tags/">
-        <ul class ="f2">
-            {% for i in Tag %}
-            <li>
-            <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" name="{{ i.id }}" id="{{ i.id }}">
-            <label class="custom-control-label" for="{{ i.id }}">{{ i.name }}</label>
-            </div>
-            </li>
-            {% endfor %}
-        <input type="submit">
-        </ul>
+     <div>
+         <table class="table table-striped table-dark">
+             <thead>
+             <tr>
+                 <th scope="col">Том</th>
+                 <th scope="col">Глава</th>
+                 <th scope="col">Силка</th>
+             </tr>
+             </thead>
+             <tbody>
+             <tr>
+                 {% for i in manga.glava.all %}
+                 <td>{{  i.num_tom}}</td>
+                 <td>{{  i.name}}</td>
+                 <td><a href="/main/glava-read/?glava={{ i.id }}">ter</a></td>
 
-        </form>
-    </div>
+             </tr>
+                {% endfor %}
+             </tbody>
+         </table>
+
+     </div>
+
+
  </div>
 </main>
 
@@ -107,7 +108,6 @@
  <div class="wrapper">
      <div class="f1"></div>
  </div>
-
 </footer>
 
 
@@ -119,7 +119,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 {% load static %}
-<script src = "{% static 'test.js' %}"></script>
-<link rel="stylesheet" href="{% static 'css/start.css' %}">
+<link rel="stylesheet" href="{% static 'css/tts.css' %}">
 
 </html>

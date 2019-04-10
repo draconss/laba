@@ -29,7 +29,7 @@ class Manga(models.Model):
 class Glava(models.Model):
     name = models.CharField(max_length=20)
     num_tom = models.IntegerField()
-    manga = models.ForeignKey(Manga,on_delete=models.CASCADE)
+    manga = models.ForeignKey(Manga,on_delete=models.CASCADE,related_name='glava')
     def __str__(self):
         return 'Glava ' + self.name
 
@@ -40,5 +40,5 @@ def get_image_filename(instance, filename):
 
 class Pics(models.Model):
     pic = models.ImageField(upload_to=get_image_filename)
-    glava = models.ForeignKey(Glava,on_delete=models.CASCADE)
+    glava = models.ForeignKey(Glava,on_delete=models.CASCADE,related_name='imgs')
 
