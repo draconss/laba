@@ -10,7 +10,6 @@
     <title>Hello, world!</title>
 </head>
 <body>
-<div class ="container">
 
 <header>
     <div class="wrapper" style="display: block">
@@ -23,7 +22,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">catalog</a>
@@ -41,6 +40,7 @@
         </div>
 </header>
 
+<div class ="container">
 
 
 
@@ -61,7 +61,7 @@
                 Автор: {{ manga.author }}
             </div>
             <div>
-            <form action="/main/tags/">
+            <form action="/tags/">
                 Теги:
                 {% for j in manga.tag.all %}
                     <input style="margin: 1px" class="btn btn-outline-dark btn-sm" type="submit" name="{{ j.id }}" value="{{ j.name }}">
@@ -89,7 +89,7 @@
                  {% for i in manga.glava.all %}
                  <td>{{  i.num_tom}}</td>
                  <td>{{  i.name}}</td>
-                 <td><a href="/main/glava-read/?glava={{ i.id }}">ter</a></td>
+                 <td><a href="/glava-read/?glava={{ i.id }}">ter</a></td>
 
              </tr>
                 {% endfor %}
@@ -104,11 +104,7 @@
 
 
 
-<footer>
- <div class="wrapper">
-     <div class="f1"></div>
- </div>
-</footer>
+
 
 
 </div>

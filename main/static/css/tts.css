@@ -37,10 +37,7 @@ li{
         border: 2px solid #000;
 
     }
-footer{
-    background-color: black;
-    margin-right: 20px;
-}
+
 .f1{
     height: 50px;
 }
@@ -53,9 +50,4 @@ body {
 .container {
   min-height: 100%;
   position: relative;
-}
-
-footer {
-
-  width: 100%;
 }

@@ -57,3 +57,26 @@ footer {
 
   width: 100%;
 }
+
+@media only screen and (max-width:600px) {
+    .test{
+        display: none;
+    }
+    .block {
+    margin: 20px;
+    display: block;
+    outline: 1px solid #000;
+    padding: 10px;
+}
+    .content{
+            display: flex;
+            flex-direction: column;
+    }
+
+    .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+}
+

@@ -9,5 +9,4 @@ urlpatterns = [
     path('read/',glava),
     path('glava-read/',reads),
 
-
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
