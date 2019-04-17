@@ -4,31 +4,37 @@ from main.models import *
 from django.core.paginator import Paginator
 from django.contrib import auth
 from django.shortcuts import redirect
+from datetime import datetime
+
 
 def hel(requrest):
     manga = Manga.objects.filter()
     tag = Tags.objects.filter()
+    aut = Author.objects.all()
     current_page = Paginator(manga, 15)
     page = requrest.GET.get('page')
     con = current_page.get_page(page)
-    return render(requrest,'main\head.html', {'manga' : con,'Tag':tag,'user': auth.get_user(requrest)})
+    return render(requrest,'main\head.html', {'manga' : con,'Tag':tag,'user': auth.get_user(requrest),'aut':aut})
 
 
 def tags(requrest):
     tag = requrest.GET
     man = Manga.objects.all()
     tags = Tags.objects.filter()
+    aut = Author.objects.all()
     ex = []
-    for i in tag:
-        if (str(i) != 'page'):
+    for i,j in tag.items():
+        if (i=='data' and j != ''):
+            man = man.filter(data_reliz=j)
+        if (i=='auth'):
+            man = man.filter(author = j)
+        if (j == 'on'):
             ex.append(int(i))
-    for i in tag:
-        if (str(i) != 'page'):
             man = man.filter(tag=i)
     pagin = Paginator(man,15)
     page = requrest.GET.get('page')
     con = pagin.get_page(page)
-    return render(requrest,'main/head.html', {'manga' : con,'Tag':tags,"check":ex,'user': auth.get_user(requrest)})
+    return render(requrest,'main/head.html', {'manga' : con,'Tag':tags,"check":ex,'user': auth.get_user(requrest),'aut':aut})
 
 
 def such(requrest):
@@ -41,9 +47,10 @@ def such(requrest):
 def glava(requrest):
     get = requrest.GET['manga']
     man = Manga.objects.get(id=get)
+    galas = man.glava.order_by('-numver')
     comnet = Coments.objects.filter(article_id=get)
     print(comnet)
-    return render(requrest,'main/reads.html',{'manga':man,'user': auth.get_user(requrest),'coments':comnet})
+    return render(requrest,'main/reads.html',{'manga':man,'user': auth.get_user(requrest),'coments':comnet,'glv':galas})
 
 
 def reads(requrest):

@@ -3,7 +3,7 @@ var shab = `<div class="panel-body">
  <a class="media-left" href="#"><img class="img-circle img-sm" alt="Профиль пользователя" src="http://bootstraptema.ru/snippets/icons/2016/mia/1.png"></a>
  <div class="media-body">
  <div class="mar-btm">
- <a href="#" class="btn-link text-semibold media-heading box-inline">${name}</a>
+ <a href="#" class="btn-link text-semibold media-heading box-inline">{name}</a>
  <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i>{data}</p>
  </div>
  <p>{text}</p>
@@ -24,10 +24,10 @@ function comen() {
         hour: 'numeric',
         minute:'numeric',
       });
-
+        shab = shab.replace("{name}",name);
         shab = shab.replace("{data}",data);
         $("#sitr").append(shab.replace("{text}",text));
-
+        $("#this_c").val("");
 }
 
 
@@ -47,6 +47,7 @@ $(document).ready(function () {
            data:  data_c,
             cache: true,
             success: function (data) {
+				console.log(data);
                 comen()
             }
         });

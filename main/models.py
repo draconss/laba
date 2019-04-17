@@ -8,10 +8,9 @@ from django.dispatch import receiver
 # Create your models here.
 class Author(models.Model):
     name = models.CharField(max_length=20)
-    surname = models.CharField(max_length=20)
 
     def __str__(self):
-        return 'author ' + self.name + self.surname
+        return '' + self.name
 
 class Tags(models.Model):
     name = models.CharField(max_length=20)
@@ -30,6 +29,7 @@ class Manga(models.Model):
         return 'Manga ' + self.name
 
 class Glava(models.Model):
+    numver = models.IntegerField()
     name = models.CharField(max_length=20)
     num_tom = models.IntegerField()
     manga = models.ForeignKey(Manga,on_delete=models.CASCADE,related_name='glava')

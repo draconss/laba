@@ -22,11 +22,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link" href="/">Главная страница</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Tags</a>
-                    </li>
+
                     <li>
                         <form action="/such/" class="form-inline my-2 my-lg-0">
                             <input name="such" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -65,16 +63,20 @@
                         Имя: {{ manga.name }}
                     </div>
                     <div>
-                        Дата: {{ manga.data_reliz }}
+                        Дата:<a href="/tags/?data={{ manga.data_reliz.isoformat}}">
+                         {{ manga.data_reliz }}
+                            </a>
                     </div>
                     <div>
-                        Автор: {{ manga.author }}
+                        Автор:<a href="/tags/?auth={{ manga.author.id }}">
+                         {{ manga.author }}
+                            </a>
                     </div>
                     <div>
                         <form action="/tags/">
                             Теги:
                             {% for j in manga.tag.all %}
-                                <input style="margin: 1px" class="btn btn-outline-dark btn-sm" type="submit" name="{{ j.id }}" value="{{ j.name }}">
+                            <button style="margin: 1px" class="btn btn-outline-dark btn-sm" type="submit" name="{{ j.id }}" value="on">{{ j.name }}</button>
                             {% endfor %}
                         </form>
                     </div>
@@ -94,17 +96,21 @@
                     <tr>
                         <th scope="col">Том</th>
                         <th scope="col">Глава</th>
+                        <th scope="col">Имя</th>
                         <th scope="col">Силка</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        {% for i in manga.glava.all %}
+                        {% for i in glv %}
+                                                <tr>
+
                             <td>{{  i.num_tom}}</td>
+                                                    <td>{{  i.numver}}</td>
                             <td>{{  i.name}}</td>
-                            <td><a href="/glava-read/?glava={{ i.id }}">ter</a></td>
+                            <td><a href="/glava-read/?glava={{ i.id }}">открить</a></td>
 
                             </tr>
+
                         {% endfor %}
                     </tbody>
                 </table>

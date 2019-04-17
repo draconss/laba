@@ -11,5 +11,4 @@ urlpatterns = [
     path('logut/',logut),
     path('login/',login),
     path('coment/',add_coment),
-
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
